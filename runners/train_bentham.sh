@@ -1,5 +1,5 @@
 # if you need resume experiment, should set checkpoint_path
-python scripts/run_train.py --experiment_name debug \
+python scripts/run_train.py \
   --checkpoint_path "" \
   --experiment_name "bentham_base" \
   --dataset "bentham" \

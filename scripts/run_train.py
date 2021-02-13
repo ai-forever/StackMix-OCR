@@ -182,15 +182,17 @@ if __name__ == '__main__':
         wer_metric = round(wer(df_pred['pred_text'], df_pred['gt_text']), 5)
         acc_metric = round(string_accuracy(df_pred['pred_text'], df_pred['gt_text']), 5)
 
-        experiment.neptune.log_metric(f'cer_test__{best_metric}', cer_metric)
-        experiment.neptune.log_metric(f'wer_test__{best_metric}', wer_metric)
-        experiment.neptune.log_metric(f'acc_test__{best_metric}', acc_metric)
+        if args.neptune_project:
+            experiment.neptune.log_metric(f'cer_test__{best_metric}', cer_metric)
+            experiment.neptune.log_metric(f'wer_test__{best_metric}', wer_metric)
+            experiment.neptune.log_metric(f'acc_test__{best_metric}', acc_metric)
 
         mistakes = df_pred[df_pred['pred_text'] != df_pred['gt_text']]
-        experiment.neptune.log_metric(f'mistakes__{best_metric}', mistakes.shape[0])
-
         df_pred.to_csv(f'{experiment.experiment_dir}/pred__{best_metric}.csv')
-        experiment.neptune.log_artifact(f'{experiment.experiment_dir}/pred__{best_metric}.csv')
+
+        if args.neptune_project:
+            experiment.neptune.log_metric(f'mistakes__{best_metric}', mistakes.shape[0])
+            experiment.neptune.log_artifact(f'{experiment.experiment_dir}/pred__{best_metric}.csv')
 
         experiment._log(  # noqa
             f'Results for {best_metric}.pt.',
@@ -200,7 +202,8 @@ if __name__ == '__main__':
             speed_inference=len(test_dataset) / (time_b - time_a),
         )
 
-    experiment.neptune.log_metric('time_inference', np.mean(time_inference))
-    experiment.neptune.log_metric('speed_inference', len(test_dataset) / np.mean(time_inference))  # sample / sec
+    if args.neptune_project:
+        experiment.neptune.log_metric('time_inference', np.mean(time_inference))
+        experiment.neptune.log_metric('speed_inference', len(test_dataset) / np.mean(time_inference))  # sample / sec
 
     experiment.destroy()
