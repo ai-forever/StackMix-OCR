@@ -28,6 +28,11 @@
 
 [TODO] 
 
+How to get char masks:
+```
+sh runners/train_bentham_blots.sh
+sh runners/prepare_bentham_char_masks.sh 
+```
 
 ## Run in docker:
 

@@ -21,10 +21,11 @@ class Predictor:
         outputs = self.model(batch['image'].to(
             self.device, dtype=torch.float32))
         predictions = []
-        for sample_id, gt_text, output in zip(batch['id'], batch['text'], outputs):
+        for sample_id, gt_text, output, coef in zip(batch['id'], batch['gt_text'], outputs, batch['coef']):
             predictions.append({
                 'id': sample_id,
                 'raw_output': output.detach().cpu(),
                 'gt_text': gt_text,
+                'coef': coef,
             })
         return predictions
