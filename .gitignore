@@ -130,3 +130,6 @@ dmypy.json
 
 
 .idea/
+
+my-requirements.txt
+my-runners/
