@@ -3,14 +3,13 @@ import torch
 from torch import nn
 
 
-def get_ocr_model(config, pretrained=True):
-    backbone = get_resnet34_backbone(pretrained=pretrained)
+def get_ocr_model(config):
+    backbone = get_resnet34_backbone()
     return RecognitionModel(backbone, **config['model']['params'])
 
 
-def get_resnet34_backbone(pretrained=True):
-    m = torch.hub.load('pytorch/vision:v0.7.0',
-                       'resnet34', pretrained=pretrained)
+def get_resnet34_backbone():
+    m = torch.hub.load('pytorch/vision:v0.7.0', 'resnet34', pretrained=True)
     input_conv = nn.Conv2d(3, 64, 7, 1, 3)
     blocks = [input_conv, m.bn1, m.relu,
               m.maxpool, m.layer1, m.layer2, m.layer3]
@@ -21,8 +20,7 @@ class BiLSTM(nn.Module):
 
     def __init__(self, input_size, hidden_size, num_layers, dropout=0.1):
         super(BiLSTM, self).__init__()
-        self.lstm = nn.LSTM(input_size, hidden_size, num_layers,
-                            dropout=dropout, batch_first=True, bidirectional=True)
+        self.lstm = nn.LSTM(input_size, hidden_size, num_layers, dropout=dropout, batch_first=True, bidirectional=True)
 
     def forward(self, x):
         out, _ = self.lstm(x)

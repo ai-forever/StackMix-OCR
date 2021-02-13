@@ -2,7 +2,7 @@
 python scripts/run_train.py \
   --checkpoint_path "" \
   --experiment_name "bentham_blots" \
-  --dataset "bentham" \
+  --dataset_name "bentham" \
   --data_dir "../StackMix-OCR-DATA" \
   --output_dir "../StackMix-OCR-SAVED_MODELS" \
   --experiment_description "[Blots] Training OCR on Bentham dataset with blot augmentation" \

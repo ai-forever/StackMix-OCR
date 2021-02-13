@@ -29,7 +29,7 @@ class OCRExperiment(TorchGPUExperiment):
 
         loss = self.criterion(preds, encoded, preds_size, lengths)
 
-        batch_metrics = self.calculate_metrics(batch['text'], outputs)
+        batch_metrics = self.calculate_metrics(batch['gt_text'], outputs)
         self.metrics.update(loss=loss.detach().cpu().item(), **batch_metrics)
 
         if self.is_train:

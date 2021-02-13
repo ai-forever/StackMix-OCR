@@ -23,7 +23,7 @@ from src.blot import get_train_transforms  # noqa
 from src.metrics import string_accuracy, cer, wer  # noqa
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser = argparse.ArgumentParser(description='Run train script.')
     parser.add_argument('--checkpoint_path', type=str)
     parser.add_argument('--experiment_name', type=str)
     parser.add_argument('--use_blot', type=int)
