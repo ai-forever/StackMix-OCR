@@ -16,10 +16,12 @@
 
 ## Recommended structure of experiments:
 
+```
 --- StackMix-OCR/
 --- StackMix-OCR-DATA/
 --- StackMix-OCR-SAVED_MODELS/
 --- StackMix-OCR-CHAR_MASKS/
+```
 
 
 ## Datasets
