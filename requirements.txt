@@ -4,7 +4,7 @@ torchvision==0.7.0+cu101
 pre-commit==2.10.1
 bezier==2020.5.19
 augmixations==0.1.2
-albumentations==0.5.2
+albumentations==0.1.12
 neptune-client==0.5.1
 pandas==1.2.2
 opencv-python==4.4.0.46
