@@ -23,7 +23,7 @@ def get_train_transforms(config):
                 'h': (bp['min_h'], bp['max_h']),
                 'w': (bp['min_w'], bp['max_w']),
             }, {
-                'incline': (5, 25),
+                'incline': (bp['min_shift'], bp['max_shift']),
                 'intensivity': (0.75, 0.75),
                 'transparency': (0.05, 0.4),
                 'count': i,
