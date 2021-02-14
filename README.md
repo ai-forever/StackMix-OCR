@@ -33,7 +33,7 @@
 3. Put dataset in StackMix-OCR-DATA folder  
 
 ####  The second way:
-Downlad prepared dataset using our script ```download_dataset.py``` (for example Bentham: ```python download_dataset.py --name=bentham```)  
+Downlad prepared dataset using our script ```download_dataset.py``` (for example Bentham: ```python scripts/download_dataset.py --name=bentham```)  
 All dataset names: bentham, peter, hkr, iam.
 And now you can use train script.  
 
