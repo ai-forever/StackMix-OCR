@@ -18,7 +18,7 @@ class CharMasks:
         bad = []
         all_masks = []
         for i, sample in tqdm(enumerate(train_inference), total=len(train_inference)):
-            gt_text = sample['gt_text']
+            gt_text = self.ctc_labeling.preprocess(sample['gt_text'])
             raw_output = sample['raw_output']
             encoded_chars = raw_output.argmax(1).numpy()
             cer_value = cer([self.ctc_labeling.decode(encoded_chars)], [gt_text if gt_text else ' '])
