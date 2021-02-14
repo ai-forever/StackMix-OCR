@@ -11,10 +11,11 @@ class OCRExperiment(TorchGPUExperiment):
         pred_texts = []
         for encoded in outputs.argmax(2).data.cpu().numpy():
             pred_texts.append(self.ctc_labeling.decode(encoded))
+        texts = [self.ctc_labeling.preprocess(text) for text in gt_texts]
         return {
-            'cer': cer(pred_texts, gt_texts),
-            'wer': wer(pred_texts, gt_texts),
-            'acc': string_accuracy(pred_texts, gt_texts),
+            'cer': cer(pred_texts, texts),
+            'wer': wer(pred_texts, texts),
+            'acc': string_accuracy(pred_texts, texts),
         }
 
     def handle_one_batch(self, batch):
