@@ -26,7 +26,19 @@
 
 ## Datasets
 
-[TODO] 
+### There are two ways to get a dataset:
+#### The first way:
+1. Download selected dataset and annotations from original site (for example Bentham: http://www.transcriptorium.eu/~tsdata/BenthamR0/)  
+2. Prepare dataset using jupyter notebook in jupyters folder  
+3. Put dataset in StackMix-OCR-DATA folder  
+
+####  The second way:
+Downlad prepared dataset using our script ```download_dataset.py``` (for example Bentham: ```python scripts/download_dataset.py --name=bentham```) 
+And now you can use train script.  
+
+You can change out folder by key --data_dir='your path', by default --data_dir=../StackMix-OCR-DATA.
+All dataset names: bentham, peter, hkr, iam.
+
 
 How to get char masks:
 ```

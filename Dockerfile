@@ -19,6 +19,7 @@ RUN pip install albumentations==0.1.12
 RUN pip install neptune-client==0.5.1
 RUN pip install psutil==5.8.0
 RUN pip install tqdm==4.56.2
+RUN pip install gdown==3.12.2
 
 WORKDIR /home
 
