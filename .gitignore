@@ -133,3 +133,4 @@ dmypy.json
 
 my-requirements.txt
 my-runners/
+.vscode/settings.json
