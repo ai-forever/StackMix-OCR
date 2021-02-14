@@ -19,7 +19,7 @@ from src.model import get_ocr_model  # noqa
 from src.experiment import OCRExperiment  # noqa
 from src import utils  # noqa
 from src.predictor import Predictor  # noqa
-from src.blot import get_train_transforms  # noqa
+from src.blot import get_train_transforms, HandWrittenBlot  # noqa
 from src.metrics import string_accuracy, cer, wer  # noqa
 
 if __name__ == '__main__':
@@ -64,12 +64,12 @@ if __name__ == '__main__':
 
     df = pd.read_csv(f'{args.data_dir}/{args.dataset_name}/marking.csv', index_col='sample_id')
 
-    train_dataset = DatasetRetriever(
-        df[df['stage'] == 'train'],
-        config,
-        ctc_labeling,
-        transforms=get_train_transforms(config),
-    )
+    train_dataset_kwargs = {}
+    if args.use_blot:
+        train_dataset_kwargs['transforms'] = get_train_transforms(config)
+        # TODO StackMix
+
+    train_dataset = DatasetRetriever(df[df['stage'] == 'train'], config, ctc_labeling, **train_dataset_kwargs)
     valid_dataset = DatasetRetriever(df[df['stage'] == 'valid'], config, ctc_labeling)
     test_dataset = DatasetRetriever(df[df['stage'] == 'test'], config, ctc_labeling)
 

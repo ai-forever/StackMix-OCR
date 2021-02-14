@@ -15,7 +15,7 @@ RUN pip install tpu-star==0.0.1-rc9
 RUN pip install pre-commit==2.10.1
 RUN pip install bezier==2020.5.19
 RUN pip install augmixations==0.1.2
-RUN pip install albumentations==0.5.2
+RUN pip install albumentations==0.1.12
 RUN pip install neptune-client==0.5.1
 RUN pip install psutil==5.8.0
 RUN pip install tqdm==4.56.2
