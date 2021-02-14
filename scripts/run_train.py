@@ -19,7 +19,7 @@ from src.model import get_ocr_model  # noqa
 from src.experiment import OCRExperiment  # noqa
 from src import utils  # noqa
 from src.predictor import Predictor  # noqa
-from src.blot import get_train_transforms, HandWrittenBlot  # noqa
+from src.blot import get_train_transforms  # noqa
 from src.metrics import string_accuracy, cer, wer  # noqa
 
 if __name__ == '__main__':
