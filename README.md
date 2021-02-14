@@ -33,9 +33,12 @@
 3. Put dataset in StackMix-OCR-DATA folder  
 
 ####  The second way:
-Downlad prepared dataset using our script ```download_dataset.py``` (for example Bentham: ```python scripts/download_dataset.py --name=bentham```)  
-All dataset names: bentham, peter, hkr, iam.
+Downlad prepared dataset using our script ```download_dataset.py``` (for example Bentham: ```python scripts/download_dataset.py --name=bentham```) 
 And now you can use train script.  
+
+You can change out folder by key --data_dir='your path', by default --data_dir=../StackMix-OCR-DATA.
+All dataset names: bentham, peter, hkr, iam.
+
 
 How to get char masks:
 ```
