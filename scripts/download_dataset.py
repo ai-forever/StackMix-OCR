@@ -7,14 +7,15 @@ import gdown
 
 
 DATASETS_ID = {
-    'bentham': '13S6lwxuFoM1vOBlofK8VUnQ3RKC2iFI0'
+    'bentham': '13S6lwxuFoM1vOBlofK8VUnQ3RKC2iFI0',
+    'corpora': '',  # TODO
 }
 
 
-def extract_archive(archive_path, extrach_path):
+def extract_archive(archive_path, extract_path):
     if archive_path.endswith('tar.gz'):
         with tarfile.open(archive_path, 'r:gz') as tar_file:
-            tar_file.extractall(path=extrach_path)
+            tar_file.extractall(path=extract_path)
 
 
 def download_and_extract(data_dir, dataset_name):
@@ -28,9 +29,9 @@ def download_and_extract(data_dir, dataset_name):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Download dataset script.')
-    parser.add_argument('--name', type=str)
+    parser.add_argument('--dataset_name', type=str)
     parser.add_argument('--data_dir', type=str, default='../StackMix-OCR-DATA')
     args = parser.parse_args()
 
     os.makedirs(args.data_dir, exist_ok=True)
-    download_and_extract(args.data_dir, args.name)
+    download_and_extract(args.data_dir, args.dataset_name)
