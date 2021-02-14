@@ -7,11 +7,11 @@ import gdown
 
 
 DATASETS_INFO = {
-    'data_root': '../../StackMix-OCR-DATA',
+    'data_root': '../StackMix-OCR-DATA',
     'bentham': {
         'dataset_name': 'bentham',
         'archive_name': 'bentham.tar.gz',
-        'file_id': '',
+        'file_id': '13S6lwxuFoM1vOBlofK8VUnQ3RKC2iFI0',
     }
 }
 
