@@ -7,9 +7,9 @@ python scripts/run_train.py \
   --output_dir "../StackMix-OCR-SAVED_MODELS" \
   --mwe_tokens_dir "../StackMix-OCR-MWE_TOKENS" \
   --experiment_description "[Blots] Training OCR on HKR dataset with blot augmentation" \
-  --image_w 2048 \
+  --image_w 1024 \
   --image_h 128 \
-  --num_epochs 300 \
+  --num_epochs 100 \
   --bs 16 \
   --num_workers 4 \
   --use_blot 1 \

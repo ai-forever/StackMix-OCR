@@ -4,7 +4,7 @@ python scripts/prepare_char_masks.py \
   --dataset_name "hkr" \
   --data_dir "../StackMix-OCR-DATA" \
   --experiment_description "[CHAR MASKS] Prepare char masks for HKR dataset" \
-  --image_w 2048 \
+  --image_w 1024 \
   --image_h 128 \
   --bs 16 \
   --num_workers 4

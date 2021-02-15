@@ -9,7 +9,7 @@ python scripts/run_train.py \
   --experiment_description "[StackMix] Training StackMix OCR on HKR dataset" \
   --image_w 2048 \
   --image_h 128 \
-  --num_epochs 1000 \
+  --num_epochs 300 \
   --bs 16 \
   --num_workers 4 \
   --use_blot 0 \
