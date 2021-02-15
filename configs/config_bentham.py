@@ -19,6 +19,7 @@ class BenthamConfig(BaseConfig):
             bs=16,
             num_workers=4,
             blank='ß',
+            corpus_name='jigsaw_corpus.txt',
     ):
         super().__init__(
             data_dir=data_dir,
@@ -32,6 +33,7 @@ class BenthamConfig(BaseConfig):
             bs=bs,
             num_workers=num_workers,
             blank=blank,
+            corpus_name=corpus_name,
         )
 
     @staticmethod

@@ -21,15 +21,19 @@ from src import utils  # noqa
 from src.predictor import Predictor  # noqa
 from src.blot import get_train_transforms  # noqa
 from src.metrics import string_accuracy, cer, wer  # noqa
+from src.stackmix import StackMix  # noqa
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run train script.')
     parser.add_argument('--checkpoint_path', type=str)
     parser.add_argument('--experiment_name', type=str)
     parser.add_argument('--use_blot', type=int)
+    parser.add_argument('--use_stackmix', type=int)
     parser.add_argument('--neptune_project', type=str)
     parser.add_argument('--neptune_token', type=str)
     parser.add_argument('--data_dir', type=str)
+    parser.add_argument('--mwe_tokens_dir', type=str)
     parser.add_argument('--output_dir', type=str)
     parser.add_argument('--experiment_description', type=str)
     parser.add_argument('--dataset_name', type=str)
@@ -67,7 +71,16 @@ if __name__ == '__main__':
     train_dataset_kwargs = {}
     if args.use_blot:
         train_dataset_kwargs['transforms'] = get_train_transforms(config)
-        # TODO StackMix
+    if args.use_stackmix:
+        stackmix = StackMix(
+            mwe_tokens_dir=args.mwe_tokens_dir,
+            data_dir=args.data_dir,
+            dataset_name=args.dataset_name,
+            image_h=args.image_h,
+        )
+        stackmix.load()
+        stackmix.load_corpus(ctc_labeling, f'{args.data_dir}/corpora/{config.corpus_name}')
+        train_dataset_kwargs['stackmix'] = stackmix
 
     train_dataset = DatasetRetriever(df[df['stage'] == 'train'], config, ctc_labeling, **train_dataset_kwargs)
     valid_dataset = DatasetRetriever(df[df['stage'] == 'valid'], config, ctc_labeling)

@@ -11,10 +11,12 @@ class BaseConfig:
             image_h,
             num_epochs,
             chars,
+            corpus_name,
             bs=16,
             num_workers=4,
             blank='ß',
     ):
+        self.corpus_name = corpus_name
         self.data_dir = data_dir
         self.dataset_name = dataset_name
         self.blank = blank

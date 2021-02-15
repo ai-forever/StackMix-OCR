@@ -20,7 +20,7 @@
 --- StackMix-OCR/
 --- StackMix-OCR-DATA/
 --- StackMix-OCR-SAVED_MODELS/
---- StackMix-OCR-CHAR_MASKS/
+--- StackMix-OCR-MWE_TOKENS/
 ```
 
 
@@ -78,7 +78,7 @@ sh runners/train_bentham_stackmix.sh
 4. Train "base + blots + stackmix" experiment:
 ```
 sh runners/prepare_bentham_stackmix.sh
-sh runners/train_bentham_blot_stackmix.sh
+sh runners/train_bentham_blots_stackmix.sh
 ```
 
 
