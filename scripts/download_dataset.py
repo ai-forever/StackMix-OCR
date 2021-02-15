@@ -8,7 +8,8 @@ import gdown
 
 DATASETS_ID = {
     'bentham': '13S6lwxuFoM1vOBlofK8VUnQ3RKC2iFI0',
-    'corpora': '',  # TODO
+    'peter': '1DWQS-7RNJ1AM02lTDBAqM94tvuVRYFx_',
+    'corpora': '1C9hSJ2R72dgZIdrwIRW0GGjVxiAlWo3G',
 }
 
 
