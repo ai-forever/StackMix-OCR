@@ -12,6 +12,7 @@ DATASETS_ID = {
     'corpora': '1C9hSJ2R72dgZIdrwIRW0GGjVxiAlWo3G',
     'iam': '1jH81RSQfFVnRlipu3_tdICzGiRNjGLE5',
     'hkr': '12eX9FRR4--k7V8Jw2WuIjtTvDWKlzAmq',
+    'saintgall': '1AVidj-ZKhLKuRQCnlIAOuTf4CvKYMNMr',
 }
 
 
