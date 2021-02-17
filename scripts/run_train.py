@@ -49,6 +49,13 @@ if __name__ == '__main__':
 
     assert args.dataset_name in CONFIGS
 
+    if args.checkpoint_path:
+        seed = round(datetime.utcnow().timestamp()) % 10000,  # warning! in resume need change seed
+    else:
+        seed = args.seed
+
+    utils.seed_everything(seed)
+
     config = CONFIGS[args.dataset_name](
         data_dir=args.data_dir,
         experiment_name=args.experiment_name,
@@ -58,6 +65,7 @@ if __name__ == '__main__':
         num_epochs=args.num_epochs,
         bs=args.bs,
         num_workers=args.num_workers,
+        seed=seed,
     )
 
     device = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
@@ -153,7 +161,7 @@ if __name__ == '__main__':
             last_saving=True,
             low_memory=True,
             verbose_step=10**5,
-            seed=args.seed,
+            seed=seed,
             use_progress_bar=bool(args.use_progress_bar),
             **neptune_kwargs,
             ctc_labeling=ctc_labeling,
@@ -171,7 +179,7 @@ if __name__ == '__main__':
             criterion=criterion,
             scheduler=scheduler,
             device=device,
-            seed=round(datetime.utcnow().timestamp()) % 10000,  # warning! in resume need change seed
+            seed=seed,
             neptune=neptune_kwargs.get('neptune'),
             ctc_labeling=ctc_labeling,
         )

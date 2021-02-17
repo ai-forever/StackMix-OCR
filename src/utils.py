@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import random
+import os
+
 import numpy as np
 import cv2
 import torch
@@ -47,3 +50,13 @@ def make_img_padding(image, max_h, max_w):
     y2 = y1 + img_h
     bg[y1:y2, x1:x2, :] = img.copy()
     return bg
+
+
+def seed_everything(seed):
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = True
