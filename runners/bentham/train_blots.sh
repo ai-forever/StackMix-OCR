@@ -9,7 +9,7 @@ python scripts/run_train.py \
   --experiment_description "[Blots] Training OCR on Bentham dataset with blot augmentation" \
   --image_w 2048 \
   --image_h 128 \
-  --num_epochs 300 \
+  --num_epochs 500 \
   --bs 16 \
   --num_workers 4 \
   --use_blot 1 \
