@@ -9,7 +9,7 @@ python scripts/run_train.py \
   --experiment_description "[Base] Training OCR on HKR dataset" \
   --image_w 1024 \
   --image_h 128 \
-  --num_epochs 50 \
+  --num_epochs 100 \
   --bs 16 \
   --num_workers 4 \
   --use_blot 0 \
