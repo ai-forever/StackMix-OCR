@@ -5,16 +5,12 @@ class BaseConfig:
             self,
             data_dir,
             dataset_name,
-            experiment_name,
-            experiment_description,
             image_w,
             image_h,
-            num_epochs,
             chars,
             corpus_name,
-            bs=16,
-            num_workers=4,
             blank='ß',
+            **kwargs,
     ):
         self.corpus_name = corpus_name
         self.data_dir = data_dir
@@ -26,13 +22,8 @@ class BaseConfig:
             'blank': self.blank,
             'chars': chars,
             'dataset_name': dataset_name,
-            'experiment_name': experiment_name,
-            'experiment_description': experiment_description,
             'image_w': image_w,
             'image_h': image_h,
-            'bs': bs,
-            'num_workers': num_workers,
-            'num_epochs': num_epochs,
             'optimizer': {
                 'name': 'AdamW',
                 'params': {
@@ -67,7 +58,8 @@ class BaseConfig:
                     'min_shift': 10,
                     'max_shift': 50,
                 }
-            }
+            },
+            **kwargs,
         }
 
     def preprocess(self, text):

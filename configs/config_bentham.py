@@ -9,31 +9,23 @@ class BenthamConfig(BaseConfig):
     def __init__(
             self,
             data_dir,
-            experiment_name,
-            experiment_description,
-            dataset_name='bentham',
             image_w=2048,
             image_h=128,
-            num_epochs=300,
+            dataset_name='bentham',
             chars=' !"#&\'()*+,-./0123456789:;<=>?ABCDEFGHIJKLMNOPQRSTUVWXY[]_abcdefghijklmnopqrstuvwxyz|£§',
-            bs=16,
-            num_workers=4,
-            blank='ß',
             corpus_name='jigsaw_corpus.txt',
+            blank='ß',
+            **kwargs,
     ):
         super().__init__(
             data_dir=data_dir,
             dataset_name=dataset_name,
-            experiment_name=experiment_name,
-            experiment_description=experiment_description,
             image_w=image_w,
             image_h=image_h,
-            num_epochs=num_epochs,
             chars=chars,
-            bs=bs,
-            num_workers=num_workers,
             blank=blank,
             corpus_name=corpus_name,
+            **kwargs,
         )
 
     @staticmethod
