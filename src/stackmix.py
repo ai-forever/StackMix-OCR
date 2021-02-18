@@ -218,7 +218,11 @@ class StackMix:
     def replace_center(image):
         h, _, _ = image.shape
         mean_h = image.mean(axis=1).mean(axis=1)
-        center = int(np.argwhere(mean_h < mean_h.min() * 1.25).mean())
+        center = np.argwhere(mean_h < mean_h.min() * 1.25).mean()
+        if str(center) == 'nan':
+            center = h // 2
+        else:
+            center = int(center)
         empty_img = np.ones(image.shape, dtype=np.uint8) * 255
         empty_img[max(h//2 - center, 0):h//2] = image[max(center - h//2, 0):center]
         empty_img[h//2:h//2 + h - center] = image[center:min(center + h//2, h)]
