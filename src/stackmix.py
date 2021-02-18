@@ -219,7 +219,7 @@ class StackMix:
         h, _, _ = image.shape
         mean_h = image.mean(axis=1).mean(axis=1)
         center = np.argwhere(mean_h < mean_h.min() * 1.25).mean()
-        if center == np.nan:
+        if str(center) == 'nan':
             center = h // 2
         else:
             center = int(center)
