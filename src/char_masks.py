@@ -8,7 +8,7 @@ from .metrics import cer
 
 class CharMasks:
 
-    def __init__(self, config, ctc_labeling, add=4, blank_add=-2):
+    def __init__(self, config, ctc_labeling, add=0, blank_add=0):
         self.ctc_labeling = ctc_labeling
         self.config = config
         self.time_feature_count = self.config['model']['params']['time_feature_count']

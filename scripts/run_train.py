@@ -50,7 +50,7 @@ if __name__ == '__main__':
     assert args.dataset_name in CONFIGS
 
     if args.checkpoint_path:
-        seed = round(datetime.utcnow().timestamp()) % 10000,  # warning! in resume need change seed
+        seed = round(datetime.utcnow().timestamp()) % 10000  # warning! in resume need change seed
     else:
         seed = args.seed
 
