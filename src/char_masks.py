@@ -8,11 +8,13 @@ from .metrics import cer
 
 class CharMasks:
 
-    def __init__(self, config, ctc_labeling):
+    def __init__(self, config, ctc_labeling, add=4, blank_add=-2):
         self.ctc_labeling = ctc_labeling
         self.config = config
         self.time_feature_count = self.config['model']['params']['time_feature_count']
         self.image_w = self.config['image_w']
+        self.add = add
+        self.blank_add = blank_add
 
     def run(self, train_inference):
         bad = []
@@ -107,9 +109,9 @@ class CharMasks:
         right_coords = self.get_coords(encoded_chars, 'right')
         coords = [left_coords[0]]
         for left_coord, right_coord, char in zip(left_coords[1:], right_coords[:-1], text):
-            add = 4
+            add = self.add
             if char == ' ':
-                add = -2
+                add = self.blank_add
             coords.append((left_coord + right_coord + add) / 2)
         coords.append(right_coords[-1])
         masks = []
