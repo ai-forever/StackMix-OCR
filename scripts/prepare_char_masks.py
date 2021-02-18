@@ -32,8 +32,8 @@ if __name__ == '__main__':
     parser.add_argument('--num_epochs', type=int, default=0)
     parser.add_argument('--experiment_description', type=str, default='Prepare char masks')
     parser.add_argument('--data_dir', type=str)
-    parser.add_argument('--char_masks_add', type=int, default=None)
-    parser.add_argument('--char_masks_blank_add', type=int, default=None)
+    parser.add_argument('--char_masks_add', type=int, default=4)
+    parser.add_argument('--char_masks_blank_add', type=int, default=-2)
 
     args = parser.parse_args()
 
