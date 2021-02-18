@@ -32,6 +32,8 @@ if __name__ == '__main__':
     parser.add_argument('--num_epochs', type=int, default=0)
     parser.add_argument('--experiment_description', type=str, default='Prepare char masks')
     parser.add_argument('--data_dir', type=str)
+    parser.add_argument('--char_masks_add', type=int, default=None)
+    parser.add_argument('--char_masks_blank_add', type=int, default=None)
 
     args = parser.parse_args()
 
@@ -81,7 +83,11 @@ if __name__ == '__main__':
     predictor = Predictor(model, device)
     train_inference = predictor.run_inference(train_loader)
 
-    all_masks, bad = CharMasks(config, ctc_labeling).run(train_inference)
+    all_masks, bad = CharMasks(
+        config, ctc_labeling,
+        add=args.char_masks_add,
+        blank_add=args.char_masks_blank_add
+    ).run(train_inference)
 
     with open(f'{config.data_dir}/{config.dataset_name}/all_char_masks.json', 'w') as file:
         json.dump(all_masks, file)
