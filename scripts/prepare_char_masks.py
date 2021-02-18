@@ -61,7 +61,6 @@ if __name__ == '__main__':
         df[df['stage'] == 'train'],
         config,
         ctc_labeling,
-        transforms=get_train_transforms(config),
     )
 
     model = get_ocr_model(config)
