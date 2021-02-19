@@ -4,6 +4,7 @@ import os
 import json
 import random
 from glob import glob
+from collections import defaultdict
 
 import cv2
 import pandas as pd
@@ -58,6 +59,7 @@ class StackMix:
         ].groupby('text').agg(lambda x: list(x)[:50])['sample_id'].values:
             stackmix_ids.update(ids)
 
+        mwe_tokens_count = defaultdict(int)
         stackmix_data = []
         for _id, masks in tqdm(all_masks.items()):
             if _id not in stackmix_ids:
@@ -77,14 +79,17 @@ class StackMix:
                     cut_image = self.replace_center(cut_image)
                     left_x = int(round(left_x / coef))
 
-                    os.makedirs(f'{self.stackmix_dir}/{text[i:i + n]}', exist_ok=True)
+                    mwe_token = text[i:i + n]
+                    os.makedirs(f'{self.stackmix_dir}/{mwe_token}', exist_ok=True)
 
-                    count = len(glob(f'{self.stackmix_dir}/{text[i:i + n]}/*.png'))
+                    count = mwe_tokens_count[mwe_token]
                     if count > 100:
                         continue
 
-                    path = f'{self.stackmix_dir}/{text[i:i + n]}/{count}.png'
+                    path = f'{self.stackmix_dir}/{mwe_token}/{count}.png'
                     cv2.imwrite(path, cut_image)
+
+                    mwe_tokens_count[mwe_token] += 1
 
                     stackmix_data.append({
                         'text': text[i:i + n],
