@@ -3,7 +3,7 @@ FROM pytorch/pytorch:1.6.0-cuda10.1-cudnn7-runtime
 USER root
 
 RUN apt-get update ##[edited]
-RUN apt-get install ffmpeg libsm6 libxext6 -y
+RUN apt-get install git ffmpeg libsm6 libxext6 -y
 
 RUN pip install --upgrade pip
 

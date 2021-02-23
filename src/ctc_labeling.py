@@ -12,7 +12,15 @@ class CTCLabeling:
 
     def encode(self, text):
         text = self.preprocess(text)
-        return [self.char2ind[char] for char in text]
+        encoded = []
+        for i, char in enumerate(text):
+            if i == 0:
+                encoded.append(self.char2ind[char])
+                continue
+            if text[i - 1] == char:
+                encoded.append(self.padding_value)
+            encoded.append(self.char2ind[char])
+        return encoded
 
     def decode(self, indexes):
         chars = []
