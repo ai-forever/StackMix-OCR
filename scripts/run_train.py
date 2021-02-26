@@ -90,7 +90,8 @@ if __name__ == '__main__':
         stackmix.load_corpus(ctc_labeling, f'{args.data_dir}/corpora/{config.corpus_name}')
         train_dataset_kwargs['stackmix'] = stackmix
 
-    train_dataset = DatasetRetriever(df[df['stage'] == 'train'], config, ctc_labeling, **train_dataset_kwargs)
+    df_train = df[~df['stage'].isin(['valid', 'test'])]
+    train_dataset = DatasetRetriever(df_train, config, ctc_labeling, **train_dataset_kwargs)
     valid_dataset = DatasetRetriever(df[df['stage'] == 'valid'], config, ctc_labeling)
     test_dataset = DatasetRetriever(df[df['stage'] == 'test'], config, ctc_labeling)
 

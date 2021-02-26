@@ -2,24 +2,13 @@ FROM pytorch/pytorch:1.6.0-cuda10.1-cudnn7-runtime
 
 USER root
 
-RUN apt-get update ##[edited]
-RUN apt-get install ffmpeg libsm6 libxext6 -y
+RUN apt-get update ##[edited] && \
+    apt-get install ffmpeg libsm6 libxext6 -y && \
+    pip install --upgrade pip
 
-RUN pip install --upgrade pip
-
-RUN pip install jupyter==1.0.0
-RUN pip install pandas==1.2.2
-RUN pip install nltk==3.5
-RUN pip install opencv-python==4.4.0.46
-RUN pip install tpu-star==0.0.1-rc9
-RUN pip install pre-commit==2.10.1
-RUN pip install bezier==2020.5.19
-RUN pip install augmixations==0.1.2
-RUN pip install albumentations==0.1.12
-RUN pip install neptune-client==0.5.1
-RUN pip install psutil==5.8.0
-RUN pip install tqdm==4.56.2
-RUN pip install gdown==3.12.2
+RUN pip install jupyter==1.0.0 pandas==1.2.2 nltk==3.5 opencv-python==4.4.0.46 tpu-star==0.0.1-rc9 \
+    pre-commit==2.10.1 bezier==2020.5.19 augmixations==0.1.2 albumentations==0.1.12 neptune-client==0.5.1 \
+    psutil==5.8.0 tqdm==4.56.2 gdown==3.12.2
 
 WORKDIR /home
 
