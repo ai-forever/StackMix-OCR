@@ -137,6 +137,16 @@ if __name__ == '__main__':
 
     neptune_kwargs = {}
     if args.neptune_project:
+        tags = [args.dataset_name]
+        if args.use_blot and args.use_stackmix:
+            tags.append('blots_stackmix')
+        elif args.use_stackmix:
+            tags.append('stackmix')
+        elif args.use_blot:
+            tags.append('blots')
+        else:
+            tags.append('base')
+
         neptune.init(
             project_qualified_name=args.neptune_project,
             api_token=args.neptune_token,
@@ -146,6 +156,7 @@ if __name__ == '__main__':
             neptune_params={
                 'description': config['experiment_description'],
                 'params': config.params,
+                'tags': tags,
             }
         )
 
