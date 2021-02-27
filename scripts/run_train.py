@@ -238,5 +238,6 @@ if __name__ == '__main__':
     if args.neptune_project:
         experiment.neptune.log_metric('time_inference', np.mean(time_inference))
         experiment.neptune.log_metric('speed_inference', len(test_dataset) / np.mean(time_inference))  # sample / sec
+        experiment.neptune.log_metric('train_per_epoch_iterations', len(train_loader))
 
     experiment.destroy()
