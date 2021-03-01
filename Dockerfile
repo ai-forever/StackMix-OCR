@@ -6,7 +6,7 @@ RUN apt-get update ##[edited] && \
     apt-get install ffmpeg libsm6 libxext6 -y && \
     pip install --upgrade pip
 
-RUN pip install jupyter==1.0.0 pandas==1.2.2 nltk==3.5 opencv-python==4.4.0.46 tpu-star==0.0.1-rc9 \
+RUN pip install jupyter==1.0.0 pandas==1.2.2 nltk==3.5 opencv-python==4.4.0.46 tpu-star==0.0.1-rc10 \
     pre-commit==2.10.1 bezier==2020.5.19 augmixations==0.1.2 albumentations==0.1.12 neptune-client==0.5.1 \
     psutil==5.8.0 tqdm==4.56.2 gdown==3.12.2
 

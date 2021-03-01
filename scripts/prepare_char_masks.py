@@ -58,7 +58,7 @@ if __name__ == '__main__':
     df = pd.read_csv(f'{args.data_dir}/{args.dataset_name}/marking.csv', index_col='sample_id')
 
     train_dataset = DatasetRetriever(
-        df[df['stage'] == 'train'],
+        df[~df['stage'].isin(['valid', 'test'])],
         config,
         ctc_labeling,
     )
