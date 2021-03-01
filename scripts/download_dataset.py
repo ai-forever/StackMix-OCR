@@ -7,12 +7,12 @@ import gdown
 
 
 DATASETS_ID = {
-    'bentham': '13S6lwxuFoM1vOBlofK8VUnQ3RKC2iFI0',
-    'peter': '1DWQS-7RNJ1AM02lTDBAqM94tvuVRYFx_',
+    'bentham': '19cFZkq4Fd0KHKxW9J0npTEhDkMyvpRAR',
+    'peter': '1zjloEBbIBZkw4zrpYn3YrGuPHXep-xOk',
     'corpora': '1C9hSJ2R72dgZIdrwIRW0GGjVxiAlWo3G',
-    'iam': '1jH81RSQfFVnRlipu3_tdICzGiRNjGLE5',
-    'hkr': '12eX9FRR4--k7V8Jw2WuIjtTvDWKlzAmq',
-    'saintgall': '1AVidj-ZKhLKuRQCnlIAOuTf4CvKYMNMr',
+    'iam': '18EdxUOSUdVyXQoZxS-oHDbD5_pM7te-U',
+    'hkr': '18bS3xJinoKzVJc_p9bEWEXAwavy8WnEz',
+    'saintgall': '1bJgrxZyjcdmYpnBD6z2CQoMue--DASJK',
 }
 
 
