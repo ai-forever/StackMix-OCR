@@ -115,6 +115,8 @@ class CharMasks:
             coords.append((left_coord + right_coord + add) / 2)
         coords.append(right_coords[-1])
         masks = []
+        if len(text) != len(coords):
+            return None
         for i, (char, coord) in enumerate(zip(text, coords)):
             x1 = int(round(coord / self.time_feature_count * self.image_w * coef))
             x2 = int(round(coords[i + 1] / self.time_feature_count * self.image_w * coef))
