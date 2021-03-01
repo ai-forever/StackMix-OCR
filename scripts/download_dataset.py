@@ -11,6 +11,7 @@ DATASETS_ID = {
     'peter': '1zjloEBbIBZkw4zrpYn3YrGuPHXep-xOk',
     'corpora': '1C9hSJ2R72dgZIdrwIRW0GGjVxiAlWo3G',
     'iam': '18EdxUOSUdVyXQoZxS-oHDbD5_pM7te-U',
+    'iam_tbluche': '1rz-l__zjAQjiKDlipo08Zxat-FqPv5p8',
     'hkr': '18bS3xJinoKzVJc_p9bEWEXAwavy8WnEz',
     'saintgall': '1bJgrxZyjcdmYpnBD6z2CQoMue--DASJK',
 }
