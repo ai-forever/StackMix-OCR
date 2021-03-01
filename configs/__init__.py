@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
-from .config_bentham import BenthamConfig
-from .config_peter import PeterConfig
-from .config_iam import IAMConfig
-from .config_hkr import HKRConfig
-from .config_saintgall import SaintGallConfig
+from .bentham import BenthamConfig
+from .peter import PeterConfig
+from .iam import IAMConfig
+from .iam_tbluche import TblucheIAMConfig
+from .hkr import HKRConfig
+from .saintgall import SaintGallConfig
 
 CONFIGS = {
     'bentham': BenthamConfig,
     'peter': PeterConfig,
     'iam': IAMConfig,
+    'iam_tbluche': TblucheIAMConfig,
     'hkr': HKRConfig,
     'saintgall': SaintGallConfig,
 }

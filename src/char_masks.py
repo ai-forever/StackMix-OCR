@@ -25,7 +25,11 @@ class CharMasks:
             encoded_chars = raw_output.argmax(1).numpy()
             cer_value = cer([self.ctc_labeling.decode(encoded_chars)], [gt_text if gt_text else ' '])
             if cer_value == 0:
-                masks = self.get_masks(encoded_chars, gt_text, sample['coef'])
+                try:
+                    masks = self.get_masks(encoded_chars, gt_text, sample['coef'])
+                except Exception as e:
+                    print(f'Warning! Exception during get char masks: {e}, {type(e)}')
+                    masks = []
                 if not masks:
                     continue
                 all_masks.append({
@@ -115,6 +119,8 @@ class CharMasks:
             coords.append((left_coord + right_coord + add) / 2)
         coords.append(right_coords[-1])
         masks = []
+        if len(text) != len(coords) - 1:
+            return masks
         for i, (char, coord) in enumerate(zip(text, coords)):
             x1 = int(round(coord / self.time_feature_count * self.image_w * coef))
             x2 = int(round(coords[i + 1] / self.time_feature_count * self.image_w * coef))
