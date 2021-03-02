@@ -35,8 +35,11 @@ class StackMix:
         self.background_smooth = BackgroundSmoothing(p=p_background_smoothing)
 
     def prepare_stackmix_dir(self, marking):
+        train_ids = marking[~marking['stage'].isin(['valid', 'test'])].index.values
         all_masks = {}
         for masks in json.load(open(f'{self.data_dir}/{self.dataset_name}/all_char_masks.json', 'rb')):
+            if masks['id'] not in train_ids:
+                continue
             mask = []
             for _mask in masks['mask']:
                 mask.append({
