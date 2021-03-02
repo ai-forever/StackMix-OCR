@@ -7,8 +7,10 @@ from datetime import datetime
 import neptune
 import torch
 import numpy as np
-from torch.utils.data import SequentialSampler, RandomSampler
 import pandas as pd
+import albumentations as A
+from torch.utils.data import SequentialSampler, RandomSampler
+
 
 sys.path.insert(0, '.')
 
@@ -19,7 +21,7 @@ from src.model import get_ocr_model  # noqa
 from src.experiment import OCRExperiment  # noqa
 from src import utils  # noqa
 from src.predictor import Predictor  # noqa
-from src.blot import get_train_transforms  # noqa
+from src.blot import get_blot_transforms  # noqa
 from src.metrics import string_accuracy, cer, wer  # noqa
 from src.stackmix import StackMix  # noqa
 
@@ -28,6 +30,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run train script.')
     parser.add_argument('--checkpoint_path', type=str)
     parser.add_argument('--experiment_name', type=str)
+    parser.add_argument('--use_augs', type=int)
     parser.add_argument('--use_blot', type=int)
     parser.add_argument('--use_stackmix', type=int)
     parser.add_argument('--neptune_project', type=str)
@@ -44,6 +47,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_workers', type=int)
     parser.add_argument('--seed', type=int, default=6955)
     parser.add_argument('--use_progress_bar', type=int, default=0)
+    parser.add_argument('--use_pretrained_backbone', type=int, default=1)
 
     args = parser.parse_args()
 
@@ -66,6 +70,10 @@ if __name__ == '__main__':
         bs=args.bs,
         num_workers=args.num_workers,
         seed=seed,
+        use_blot=args.use_blot,
+        use_augs=args.use_augs,
+        use_stackmix=args.use_stackmix,
+        use_pretrained_backbone=args.use_pretrained_backbone,
     )
 
     device = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
@@ -76,9 +84,25 @@ if __name__ == '__main__':
 
     df = pd.read_csv(f'{args.data_dir}/{args.dataset_name}/marking.csv', index_col='sample_id')
 
-    train_dataset_kwargs = {}
-    if args.use_blot:
-        train_dataset_kwargs['transforms'] = get_train_transforms(config)
+    if args.use_blot and args.use_augs:
+        transforms = A.Compose([
+            get_blot_transforms(config),
+            A.CLAHE(clip_limit=4.0, tile_grid_size=(8, 8), p=0.25, always_apply=False),
+            A.Rotate(limit=3, interpolation=1, border_mode=0, p=0.5),
+            A.JpegCompression(quality_lower=75, p=0.5),
+        ], p=1.0)
+    elif args.use_blot:
+        transforms = get_blot_transforms(config)
+    elif args.use_augs:
+        transforms = A.Compose([
+            A.CLAHE(clip_limit=4.0, tile_grid_size=(8, 8), p=0.25, always_apply=False),
+            A.Rotate(limit=3, interpolation=1, border_mode=0, p=0.5),
+            A.JpegCompression(quality_lower=75, p=0.5),
+        ], p=1.0)
+    else:
+        transforms = None
+
+    train_dataset_kwargs = {'transforms': transforms}
     if args.use_stackmix:
         stackmix = StackMix(
             mwe_tokens_dir=args.mwe_tokens_dir,
@@ -95,7 +119,7 @@ if __name__ == '__main__':
     valid_dataset = DatasetRetriever(df[df['stage'] == 'valid'], config, ctc_labeling)
     test_dataset = DatasetRetriever(df[df['stage'] == 'test'], config, ctc_labeling)
 
-    model = get_ocr_model(config)
+    model = get_ocr_model(config, pretrained=bool(args.use_pretrained_backbone))
 
     model = model.to(device)
     criterion = torch.nn.CTCLoss(zero_infinity=True).to(device)

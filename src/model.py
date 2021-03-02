@@ -3,13 +3,13 @@ import torch
 from torch import nn
 
 
-def get_ocr_model(config):
-    backbone = get_resnet34_backbone()
+def get_ocr_model(config, pretrained=True):
+    backbone = get_resnet34_backbone(pretrained=pretrained)
     return RecognitionModel(backbone, **config['model']['params'])
 
 
-def get_resnet34_backbone():
-    m = torch.hub.load('pytorch/vision:v0.7.0', 'resnet34', pretrained=True)
+def get_resnet34_backbone(pretrained=True):
+    m = torch.hub.load('pytorch/vision:v0.7.0', 'resnet34', pretrained=pretrained)
     input_conv = nn.Conv2d(3, 64, 7, 1, 3)
     blocks = [input_conv, m.bn1, m.relu,
               m.maxpool, m.layer1, m.layer2, m.layer3]
