@@ -162,12 +162,20 @@ if __name__ == '__main__':
     neptune_kwargs = {}
     if args.neptune_project:
         tags = [args.dataset_name]
-        if args.use_blot and args.use_stackmix:
+        if args.use_blot and args.use_stackmix and args.use_augs:
+            tags.append('blots_augs_stackmix')
+        elif args.use_blot and args.use_stackmix:
             tags.append('blots_stackmix')
+        elif args.use_blot and args.use_augs:
+            tags.append('blots_augs')
+        elif args.use_stackmix and args.use_augs:
+            tags.append('augs_stackmix')
         elif args.use_stackmix:
             tags.append('stackmix')
         elif args.use_blot:
             tags.append('blots')
+        elif args.use_augs:
+            tags.append('augs')
         else:
             tags.append('base')
 
