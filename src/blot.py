@@ -12,9 +12,8 @@ class AlbuHandWrittenBlot(A.DualTransform):
         return self.hwb(image)
 
 
-def get_train_transforms(config):
+def get_blot_transforms(config):
     bp = config['blot']['params']
-
     return A.OneOf([
         AlbuHandWrittenBlot(HandWrittenBlot(
             {
