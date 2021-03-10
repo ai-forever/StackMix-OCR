@@ -13,7 +13,7 @@ class SaintGallConfig(BaseConfig):
             image_h=128,
             dataset_name='saintgall',
             chars=' ABCDEFGHILMNOPQRSTUVXZabcdefghiklmnopqrstuvwxyz',
-            corpus_name='jigsaw_corpus.txt',
+            corpus_name='latin_corpus.txt',
             blank='ß',
             **kwargs,
     ):
