@@ -4,16 +4,16 @@ import re
 from .base import BaseConfig
 
 
-class SaintGallConfig(BaseConfig):
+class WashingtonConfig(BaseConfig):
 
     def __init__(
             self,
             data_dir,
             image_w=2048,
             image_h=128,
-            dataset_name='saintgall',
-            chars=' &.ABCDEFGHILMNOPQRSTUVXZabcdefghiklmnopqrstuvwxyz',
-            corpus_name='latin_corpus.txt',
+            dataset_name='washington',
+            chars=" '(),-.0123456789:ABCDEFGHIJKLMNOPQRSTVWYabcdefghijklmnopqrstuvwxyz£",
+            corpus_name='jigsaw_corpus.txt',
             blank='ß',
             **kwargs,
     ):
