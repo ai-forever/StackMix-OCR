@@ -14,6 +14,7 @@ DATASETS_ID = {
     'iam_tbluche': '1rz-l__zjAQjiKDlipo08Zxat-FqPv5p8',
     'hkr': '18bS3xJinoKzVJc_p9bEWEXAwavy8WnEz',
     'saintgall': '1bJgrxZyjcdmYpnBD6z2CQoMue--DASJK',
+    'washington': '1CUPav7swZfdqYnqfREgHEnzS8mo0I9wD',
 }
 
 
