@@ -15,7 +15,6 @@ from src.ctc_labeling import CTCLabeling  # noqa
 from src.model import get_ocr_model  # noqa
 from src import utils  # noqa
 from src.predictor import Predictor  # noqa
-from src.blot import get_train_transforms  # noqa
 from src.metrics import string_accuracy, cer, wer  # noqa
 from src.char_masks import CharMasks  # noqa
 
