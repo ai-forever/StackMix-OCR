@@ -9,6 +9,8 @@ from .washington import WashingtonConfig
 from .schwerin import SchwerinConfig
 from .konzil import KonzilConfig
 from .patzig import PatzigConfig
+from .ricordi import RicordiConfig
+from .schiller import SchillerConfig
 
 CONFIGS = {
     'bentham': BenthamConfig,
@@ -21,4 +23,6 @@ CONFIGS = {
     'schwerin': SchwerinConfig,
     'konzil': KonzilConfig,
     'patzig': PatzigConfig,
+    'ricordi': RicordiConfig,
+    'schiller': SchillerConfig,
 }
