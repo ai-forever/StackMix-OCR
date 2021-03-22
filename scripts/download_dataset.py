@@ -15,6 +15,11 @@ DATASETS_ID = {
     'hkr': '18bS3xJinoKzVJc_p9bEWEXAwavy8WnEz',
     'saintgall': '1bJgrxZyjcdmYpnBD6z2CQoMue--DASJK',
     'washington': '1CUPav7swZfdqYnqfREgHEnzS8mo0I9wD',
+    'schwerin': '1WRFsWopEbccbjUWJ4D7Cj9u4MtaHxHVE',
+    'konzil': '16EGucsb41gErbAToW0Fv2WjN8pKqVbUt',
+    'patzig': '1LnbXBhmwciGSMmRTBNWZwxom_5E9DTOz',
+    'ricordi': '1bo6i2hs3rYiebjnVbdheadiPpipFYiIj',
+    'schiller': '1xbf5HviEx8KXHd3s5qVSsRIHyHC4941B',
 }
 
 
