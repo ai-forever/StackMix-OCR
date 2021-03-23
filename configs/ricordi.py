@@ -13,7 +13,7 @@ class RicordiConfig(BaseConfig):
             image_h=128,
             dataset_name='ricordi',
             chars=' !(),-./0123456789:;=ABCDEFGHILMNOPQRSTUV[]abcdefghilmnopqrstuvyz¬°–’',
-            corpus_name='german_corpus.txt',
+            corpus_name='italian_corpus.txt',
             blank='Ɣ',
             **kwargs,
     ):
