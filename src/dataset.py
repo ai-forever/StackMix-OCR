@@ -33,7 +33,7 @@ class DatasetRetriever(Dataset):
                     image, coef = self.resize_image(image)
                     break
             else:
-                raise
+                image, coef = self.load_image(idx)
         else:
             image, coef = self.load_image(idx)
             gt_text = self.texts[idx]

@@ -146,7 +146,8 @@ class StackMix:
                 image = self.stack_images(image, stack_image, self.angle, stack_left_x)
                 left_x = stack_left_x  # noqa
 
-        image = self.background_smooth(image=image)['image']
+        if image is not None:
+            image = self.background_smooth(image=image)['image']
         return image
 
     def load(self):
