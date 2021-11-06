@@ -28,8 +28,8 @@ The dataset should contain a directory with images, a csv file `marking.csv` and
 
 ![Dataset format](https://sun9-7.userapi.com/impg/GpIzvjYF9AbpGOQbamvCcgwRA9fVfHo2SaPOcg/Ox847-h0m8o.jpg?size=174x106&quality=96&sign=fb2ce9af30b54f09cfc8542ee8f84fad&type=album)
 
-The file with the csv extension must contain a separate field with information about which selection the image belongs to `(train / val / test)`.
-Example of the structure and content of a csv file is given below
+The csv file must contain the "stage" field with information about which sample the image belongs to `(training / valid / test)`.
+An example of the structure and content of a csv file is given below
 ```
 sample_id,path,stage,text
 270-01,washington/images/270-01.png,train,"270. Letters, Orders and Instructions. October 1755."
