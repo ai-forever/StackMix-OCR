@@ -104,8 +104,33 @@ Example of generating images with stackmix
 ## Citation
 
 Please cite the related works in your publications if it helps your research:
+```
+@inproceedings{10.1145/3476887.3476892,
+author = {Mark, Potanin and Denis, Dimitrov and Alex, Shonenkov and Vladimir, Bataev and Denis, Karachev and Maxim, Novopoltsev and Andrey, Chertok},
+title = {Digital Peter: New Dataset, Competition and Handwriting Recognition Methods},
+year = {2021},
+isbn = {9781450386906},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3476887.3476892},
+doi = {10.1145/3476887.3476892},
+abstract = { This paper presents a new dataset of Peter the Great’s manuscripts and describes
+a segmentation procedure that converts initial images of documents into lines. This
+new dataset may be useful for researchers to train handwriting text recognition models
+as a benchmark when comparing different models. It consists of 9694 images and text
+files corresponding to different lines in historical documents. The open machine learning
+competition ”Digital Peter” was held based on the considered dataset. The baseline
+solution for this competition and advanced methods on handwritten text recognition
+are described in the article. The full dataset and all codes are publicly available.},
+booktitle = {The 6th International Workshop on Historical Document Imaging and Processing},
+pages = {43–48},
+numpages = {6},
+keywords = {handwritten text recognition, Digital Peter, historical dataset, Russian},
+location = {Lausanne, Switzerland},
+series = {HIP '21}
+}
+```
 
-[TODO]
 
 ## Contacts
 
