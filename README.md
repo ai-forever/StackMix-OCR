@@ -137,5 +137,5 @@ series = {HIP '21}
 - [A. Shonenkov](https://www.kaggle.com/shonenkov) shonenkov@phystech.edu
 - [D. Karachev](https://github.com/thedenk/)
 - [M. Novopoltsev](https://github.com/maximazzik)
-- [D. Dimitrov] (https://github.com/denndimitrov)
+- [D. Dimitrov](https://github.com/denndimitrov)
 - [M. Potanin](https://github.com/MarkPotanin)
