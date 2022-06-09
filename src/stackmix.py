@@ -3,6 +3,7 @@ import shutil
 import os
 import json
 import random
+import pickle as pkl
 from glob import glob
 from collections import defaultdict
 
@@ -64,6 +65,7 @@ class StackMix:
 
         mwe_tokens_count = defaultdict(int)
         stackmix_data = []
+        cut_images = []
         for _id, masks in tqdm(all_masks.items()):
             if _id not in stackmix_ids:
                 continue
@@ -83,14 +85,13 @@ class StackMix:
                     left_x = int(round(left_x / coef))
 
                     mwe_token = text[i:i + n]
-                    os.makedirs(f'{self.stackmix_dir}/{mwe_token}', exist_ok=True)
 
                     count = mwe_tokens_count[mwe_token]
                     if count > 100:
                         continue
 
                     path = f'{self.stackmix_dir}/{mwe_token}/{count}.png'
-                    cv2.imwrite(path, cut_image)
+                    cut_images.append(cut_image)
 
                     mwe_tokens_count[mwe_token] += 1
 
@@ -99,6 +100,13 @@ class StackMix:
                         'path': path,
                         'left_x': left_x,
                     })
+
+        # write images
+        path2image_dict = {}
+        for data, cut_image in zip(stackmix_data, cut_images):
+            path2image_dict[data['path']] = cut_image
+        with open(f'{self.mwe_tokens_dir}/{self.dataset_name}/cut_images.pkl', 'wb') as f:
+            pkl.dump(path2image_dict, f, protocol=pkl.HIGHEST_PROTOCOL)
 
         stackmix_data = pd.DataFrame(stackmix_data)
         stackmix_data.to_csv(f'{self.mwe_tokens_dir}/{self.dataset_name}/stackmix.csv', index=False)
@@ -137,11 +145,11 @@ class StackMix:
             word_token, (span_a, span_b), token = span
             if image is None:
                 path = random.choice(self.token2path.loc[word_token]['path'])
-                image = cv2.imread(path)
+                image = self.cut_images[path]
                 left_x = self.path2leftx.loc[path]['left_x']  # noqa
             else:
                 path = random.choice(self.token2path.loc[word_token]['path'])
-                stack_image = cv2.imread(path)
+                stack_image = self.cut_images[path]
                 stack_left_x = self.path2leftx.loc[path]['left_x']
                 image = self.stack_images(image, stack_image, self.angle, stack_left_x)
                 left_x = stack_left_x  # noqa
@@ -151,6 +159,8 @@ class StackMix:
         return image
 
     def load(self):
+        with open(f'{self.mwe_tokens_dir}/{self.dataset_name}/cut_images.pkl', 'rb') as f:
+            self.cut_images = pkl.load(f)
         self.stackmix_data = pd.read_csv(f'{self.mwe_tokens_dir}/{self.dataset_name}/stackmix.csv')
         self.stackmix_data['text'] = self.stackmix_data['text'].astype(str)
         for max_len in range(3, self.max_token_size+1):
